@@ -25,4 +25,23 @@ public class WatchListItemController {
 
     return new ModelAndView(viewName, model);
   }
+
+  // Get - Display watch list form
+  @GetMapping("/watchlistItemForm")
+  public ModelAndView showWatchlistItemForm(@RequestParam(required=false) Integer id) {
+
+    String viewName = "watchlistItemForm";
+
+    Map<String, Object> model = new HashMap<String, Object>();
+
+    WatchlistItem watchlistItem = findWatchlistItemById(id);
+
+    if (watchlistItem == null) {
+      model.put("watchlistItem", new WatchlistItem());
+    } else {
+      model.put("watchlistItem", watchlistItem);
+    }
+
+    return new ModelAndView(viewName, model);
+  }
 }
