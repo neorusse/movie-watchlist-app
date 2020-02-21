@@ -1,17 +1,23 @@
 package com.ecodencode.watchlist.Controller;
 
 import com.ecodencode.watchlist.Model.WatchlistItem;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Controller
 public class WatchListItemController {
 
   List<WatchlistItem> watchlistItems = new ArrayList<WatchlistItem>();
+  private static int index = 1;
 
   // GET - Displays all Watch List
   @GetMapping("/watchlist")
@@ -43,5 +49,38 @@ public class WatchListItemController {
     }
 
     return new ModelAndView(viewName, model);
+  }
+
+  // method to retrieve an id of a watch list
+  private WatchlistItem findWatchlistItemById(Integer id) {
+    for (WatchlistItem watchlistItem : watchlistItems) {
+      if (watchlistItem.getId().equals(id)) {
+        return watchlistItem;
+      }
+    }
+
+    return null;
+  }
+
+  // POST - Handles Watch List form submission for creating new item and updating an item
+  @PostMapping("/watchlistItemForm")
+  public ModelAndView submitWatchlistItemForm(WatchlistItem watchlistItem) {
+
+    WatchlistItem existingItem = findWatchlistItemById(watchlistItem.getId());
+
+    if (existingItem == null) {
+      watchlistItem.setId(index++);
+      watchlistItems.add(watchlistItem);
+    } else {
+      existingItem.setComment(watchlistItem.getComment());
+      existingItem.setPriority(watchlistItem.getPriority());
+      existingItem.setRating(watchlistItem.getRating());
+      existingItem.setTitle(watchlistItem.getTitle());
+    }
+
+    RedirectView redirect = new RedirectView();
+    redirect.setUrl("/watchlist");
+
+    return new ModelAndView(redirect);
   }
 }
