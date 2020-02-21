@@ -1,5 +1,3 @@
-# movie-watchlist-app
-A Movie Watch List App
 # [Movie Watch List App](https://movie-watchlist.com/)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
