@@ -44,7 +44,7 @@ This project uses [JUnit](https://junit.org/junit5/)
 
 ### License
 
-Conference Schedule App is Open Source software released under the [MIT](https://opensource.org/licenses/MIT)
+This Movie Watch List App is Open Source software released under the [MIT](https://opensource.org/licenses/MIT)
 
 ### Author
 
