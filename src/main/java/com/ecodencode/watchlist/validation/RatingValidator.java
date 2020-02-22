@@ -1,4 +1,4 @@
-package com.ecodencode.watchlist;
+package com.ecodencode.watchlist.validation;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

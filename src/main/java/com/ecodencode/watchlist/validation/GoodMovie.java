@@ -1,4 +1,4 @@
-package com.ecodencode.watchlist;
+package com.ecodencode.watchlist.validation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

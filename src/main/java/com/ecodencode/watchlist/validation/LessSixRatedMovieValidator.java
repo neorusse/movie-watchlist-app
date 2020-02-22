@@ -1,4 +1,4 @@
-package com.ecodencode.watchlist;
+package com.ecodencode.watchlist.validation;
 
 import com.ecodencode.watchlist.model.WatchlistItem;
 
