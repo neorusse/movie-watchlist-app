@@ -1,15 +1,25 @@
 package com.ecodencode.watchlist.Model;
 
+import com.ecodencode.watchlist.Priority;
+import com.ecodencode.watchlist.Rating;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 public class WatchlistItem {
 
   private Integer id;
 
+  @NotBlank( message="Please enter the title")
   private String title;
 
+  @Rating
   private String rating;
 
+  @Priority
   private String priority;
 
+  @Size(max=50,  message="Comment should be maximum 50 characters")
   private String comment;
 
   public static int index = 0;
