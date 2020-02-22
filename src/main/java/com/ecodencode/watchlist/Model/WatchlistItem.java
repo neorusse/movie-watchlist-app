@@ -1,11 +1,15 @@
 package com.ecodencode.watchlist.Model;
 
+import com.ecodencode.watchlist.GoodMovie;
+import com.ecodencode.watchlist.LessSixRatedMovie;
 import com.ecodencode.watchlist.Priority;
 import com.ecodencode.watchlist.Rating;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+@LessSixRatedMovie
+@GoodMovie
 public class WatchlistItem {
 
   private Integer id;
