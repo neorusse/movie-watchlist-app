@@ -1,9 +1,9 @@
-package com.ecodencode.watchlist.Model;
+package com.ecodencode.watchlist.model;
 
-import com.ecodencode.watchlist.GoodMovie;
-import com.ecodencode.watchlist.LessSixRatedMovie;
-import com.ecodencode.watchlist.Priority;
-import com.ecodencode.watchlist.Rating;
+import com.ecodencode.watchlist.validation.GoodMovie;
+import com.ecodencode.watchlist.validation.LessSixRatedMovie;
+import com.ecodencode.watchlist.validation.Priority;
+import com.ecodencode.watchlist.validation.Rating;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
