@@ -3,17 +3,45 @@ package com.ecodencode.watchlist.service;
 import com.ecodencode.watchlist.exception.DuplicateTitleException;
 import com.ecodencode.watchlist.model.WatchlistItem;
 import com.ecodencode.watchlist.repository.WatchlistRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class WatchlistService {
 
-  WatchlistRepository watchlistRepository = new WatchlistRepository();
+  // fields
+  private MovieRatingService movieRatingService;
+  private WatchlistRepository watchlistRepository;
 
-  public List<WatchlistItem> getWatchlistItems(){
-    return watchlistRepository.getList();
+  // parameterized constructor
+  @Autowired
+  public WatchlistService(WatchlistRepository watchlistRepository, MovieRatingService movieRatingService) {
+    super();
+    this.watchlistRepository = watchlistRepository;
+    this.movieRatingService = movieRatingService;
   }
 
+  // Retrieve all movie watch list items
+  public List<WatchlistItem> getWatchlistItems(){
+
+    List<WatchlistItem> watchlistItems = watchlistRepository.getList();
+
+    for (WatchlistItem watchlistItem : watchlistItems) {
+
+      // get the IMDb rating of the movie
+      String rating = movieRatingService.getMovieRating(watchlistItem.getTitle());
+
+      if (rating != null) {
+        watchlistItem.setRating(rating);
+      }
+    }
+
+    return watchlistItems;
+  }
+
+  // get movie watch list size
   public int getWatchlistItemsSize() {
     return watchlistRepository.getList().size();
   }
@@ -25,6 +53,7 @@ public class WatchlistService {
       throw new DuplicateTitleException();
     }
 
+
   }
 
   // method to retrieve an id of a watch list
@@ -32,6 +61,7 @@ public class WatchlistService {
     return watchlistRepository.findById(id);
   }
 
+  // adds new movie list or update existing movie list
   public void addOrUpdateWatchlistItem(WatchlistItem watchlistItem) throws DuplicateTitleException {
 
     WatchlistItem existingItem = findWatchlistItemById(watchlistItem.getId());
