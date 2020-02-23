@@ -1,10 +1,12 @@
 package com.ecodencode.watchlist.repository;
 
 import com.ecodencode.watchlist.model.WatchlistItem;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class WatchlistRepository {
 
   private List<WatchlistItem> watchlistItems = new ArrayList<WatchlistItem>();
