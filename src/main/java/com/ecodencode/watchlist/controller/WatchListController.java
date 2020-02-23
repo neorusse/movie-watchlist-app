@@ -3,6 +3,7 @@ package com.ecodencode.watchlist.controller;
 import com.ecodencode.watchlist.exception.DuplicateTitleException;
 import com.ecodencode.watchlist.model.WatchlistItem;
 import com.ecodencode.watchlist.service.WatchlistService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +19,15 @@ import java.util.Map;
 @Controller
 public class WatchListController {
 
-  private WatchlistService watchlistService = new WatchlistService();
+  // field
+  private WatchlistService watchlistService;
+
+  // parameterized constructor
+  @Autowired
+  public WatchListController(WatchlistService watchlistService) {
+    super();
+    this.watchlistService = watchlistService;
+  }
 
   // GET - Displays all Watch List
   @GetMapping("/watchlist")
