@@ -3,6 +3,8 @@ package com.ecodencode.watchlist.controller;
 import com.ecodencode.watchlist.exception.DuplicateTitleException;
 import com.ecodencode.watchlist.model.WatchlistItem;
 import com.ecodencode.watchlist.service.WatchlistService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -19,6 +21,8 @@ import java.util.Map;
 @Controller
 public class WatchListController {
 
+  private final Logger logger = LoggerFactory.getLogger(WatchListController.class);
+
   // field
   private WatchlistService watchlistService;
 
@@ -33,6 +37,8 @@ public class WatchListController {
   @GetMapping("/watchlist")
   public ModelAndView getWatchlist() {
 
+    logger.info("HTTP GET request received at /watchlist url");
+
     String viewName = "watchlist";
 
     Map<String, Object> model = new HashMap<String, Object>();
@@ -46,6 +52,8 @@ public class WatchListController {
   // Get - Display watch list form
   @GetMapping("/watchlistItemForm")
   public ModelAndView showWatchlistItemForm(@RequestParam(required=false) Integer id) {
+
+    logger.info("HTTP GET request received at /watchlistItemForm url");
 
     String viewName = "watchlistItemForm";
 
@@ -66,6 +74,8 @@ public class WatchListController {
   // POST - Handles Watch List form submission for creating new item and updating an item
   @PostMapping("/watchlistItemForm")
   public ModelAndView submitWatchlistItemForm(@Valid WatchlistItem watchlistItem, BindingResult bindingResult) {
+
+    logger.info("HTTP POST request received at /watchlistItemForm url");
 
     if (bindingResult.hasErrors()) {
       return new ModelAndView("watchlistItemForm");
