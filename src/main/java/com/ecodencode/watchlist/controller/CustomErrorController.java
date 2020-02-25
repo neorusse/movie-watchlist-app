@@ -1,4 +1,4 @@
-package com.ecodencode.watchlist;
+package com.ecodencode.watchlist.controller;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class CustomErrorController implements ErrorController {
 
   // adding logs
-  Logger logger = LoggerFactory.getLogger(CustomErrorController.class);
+  private final Logger logger = LoggerFactory.getLogger(CustomErrorController.class);
 
   @Override
   public String getErrorPath() {
